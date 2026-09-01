@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wawuji - Digital Goods & Apple Numbers Workspace</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans" x-data="wawujiApp()">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <span class="text-2xl font-black text-rose-600 tracking-tight cursor-pointer" @click="currentView = 'home'">wawuji<span class="text-slate-900">.com</span></span>
+                <nav class="hidden md:flex space-x-6 ml-8 text-sm font-medium text-slate-600">
+                    <button @click="currentView = 'home'" :class="currentView === 'home' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Card Issuing</button>
+                    <button @click="currentView = 'products'" :class="currentView === 'products' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Product Center</button>
+                    <button @click="currentView = 'finance'" :class="currentView === 'finance' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Finance</button>
+                    <button @click="currentView = 'orders'" :class="currentView === 'orders' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Orders</button>
+                    <button @click="currentView = 'messages'" :class="currentView === 'messages' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">SMS Inbox</button>
+                </nav>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <template x-if="isLoggedIn">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-sm font-semibold bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200">Balance: <span class="text-emerald-600 font-bold" x-text="`$${balance.toFixed(2)}`"></span></span>
+                        <button @click="currentView = 'console'" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 transition">Console</button>
+                        <button @click="logout()" class="text-slate-400 hover:text-rose-600 text-xs font-medium">Logout</button>
+                    </div>
+                </template>
+                <template x-if="!isLoggedIn">
+                    <div class="space-x-2">
+                        <button @click="authModal = 'login'; showAuthModal = true;" class="text-slate-600 hover:text-slate-900 px-3 py-2 text-sm font-medium">Log in</button>
+                        <button @click="authModal = 'register'; showAuthModal = true;" class="bg-rose-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-700 transition">Create account</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <div x-show="showAlert" x-transition class="fixed bottom-5 right-5 bg-slate-900 text-white px-6 py-3 rounded-xl shadow-2xl z-50 text-sm flex items-center space-x-3">
+            <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-pulse"></span>
+            <span x-text="alertMessage"></span>
+        </div>
+
+        <template x-if="currentView === 'home'">
+            <div>
+                <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
+                    <h1 class="text-3xl font-black mb-3">Digital goods, private numbers, and balance in one account.</h1>
+                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Products, recharge, delivery, SMS, renewals, and notices stay in one clear workspace. Specially optimized for Apple private verification numbers.</p>
+                    <div class="space-x-4">
+                        <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg shadow-rose-600/30">Get Started Now</button>
+                        <button @click="currentView = 'products'" class="bg-white/10 hover:bg-white/20 text-white px-6 py-3 rounded-xl text-sm font-medium transition">Browse Catalog</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-rose-600 font-bold text-lg mb-1">01</div>
+                        <h3 class="font-bold text-slate-900 mb-1">Apple Numbers</h3>
+                        <p class="text-xs text-slate-500">Dedicated private numbers starting at $20 for every 30 numbers pack.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-rose-600 font-bold text-lg mb-1">02</div>
+                        <h3 class="font-bold text-slate-900 mb-1">Instant SMS Inbox</h3>
+                        <p class="text-xs text-slate-500">View, copy, and receive real-time SMS records directly from your account.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-rose-600 font-bold text-lg mb-1">03</div>
+                        <h3 class="font-bold text-slate-900 mb-1">Balance Recharge</h3>
+                        <p class="text-xs text-slate-500">Secure integer balance top-ups instantly added to your workspace.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-rose-600 font-bold text-lg mb-1">04</div>
+                        <h3 class="font-bold text-slate-900 mb-1">90-Day Renewals</h3>
+                        <p class="text-xs text-slate-500">Manage 90-day cycle renewals smoothly with automated token refresh.</p>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="currentView === 'products'">
+            <div>
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple Numbers</h2>
+                        <p class="text-xs text-slate-500 mt-1">Special pricing: 30 numbers for $20.00 ($0.67 per number).</p>
+                    </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Live Stock Active</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="text-rose-600 font-bold text-xs uppercase tracking-wider mb-1">Apple Service Pack</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">30 Apple Numbers</h3>
+                            <p class="text-xs text-slate-500 mb-4">Perfect entry package for Apple verification with instant delivery & SMS inbox.</p>
+                            <div class="text-3xl font-black text-slate-900 mb-4">$20.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
+                        </div>
+                        <button @click="buyPackage(30, 20.00, 'Apple Numbers (30 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 30 Numbers</button>
+                    </div>
+
+                    <div class="bg-white border-2 border-rose-600 rounded-2xl p-6 shadow-md relative flex flex-col justify-between">
+                        <span class="absolute -top-3 right-4 bg-rose-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase tracking-wide">Best Value</span>
+                        <div>
+                            <div class="text-rose-600 font-bold text-xs uppercase tracking-wider mb-1">Apple Service Pack</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">60 Apple Numbers</h3>
+                            <p class="text-xs text-slate-500 mb-4">Double bundle with multi-region selection and priority SMS delivery.</p>
+                            <div class="text-3xl font-black text-slate-900 mb-4">$40.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
+                        </div>
+                        <button @click="buyPackage(60, 40.00, 'Apple Numbers (60 Qty)')" class="w-full bg-rose-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-rose-700 transition shadow-lg shadow-rose-600/20">Buy 60 Numbers</button>
+                    </div>
+
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="text-rose-600 font-bold text-xs uppercase tracking-wider mb-1">Apple Service Pack</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">90 Apple Numbers</h3>
+                            <p class="text-xs text-slate-500 mb-4">Bulk professional pack with 90-day renewal cycle and automated exports.</p>
+                            <div class="text-3xl font-black text-slate-900 mb-4">$60.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
+                        </div>
+                        <button @click="buyPackage(90, 60.00, 'Apple Numbers (90 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 90 Numbers</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="currentView === 'console'">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">User Console & Workspace</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-xs text-slate-500 mb-1">Account Status</div>
+                        <div class="text-lg font-bold text-emerald-600 flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+                            <span>Active</span>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-xs text-slate-500 mb-1">Current Balance</div>
+                        <div class="text-lg font-bold text-slate-900" x-text="`$${balance.toFixed(2)}`"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-xs text-slate-500 mb-1">Total Orders</div>
+                        <div class="text-lg font-bold text-slate-900" x-text="orders.length"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="text-xs text-slate-500 mb-1">Active SMS Inbox</div>
+                        <div class="text-lg font-bold text-rose-600">3 Channels</div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-xs">
+                    <h3 class="font-bold text-slate-900 mb-4">Quick Actions</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <button @click="currentView = 'products'" class="bg-rose-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-rose-700">Buy Apple Numbers</button>
+                        <button @click="currentView = 'finance'" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Recharge Balance</button>
+                        <button @click="currentView = 'orders'" class="bg-slate-100 text-slate-800 px-4 py-2 rounded-lg text-sm font-medium hover:bg-slate-200">View Delivery Data</button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="currentView === 'finance'">
+            <div class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-2">Balance Recharge</h2>
+                <p class="text-xs text-slate-500 mb-6">Add integer amounts to your account balance instantly.</p>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Amount ($)</label>
+                        <input type="number" x-model.number="rechargeAmount" min="10" step="10" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-600">
+                    </div>
+                    <div class="flex space-x-2">
+                        <button @click="rechargeAmount = 20" class="bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">$20</button>
+                        <button @click="rechargeAmount = 50" class="bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">$50</button>
+                        <button @click="rechargeAmount = 100" class="bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg text-xs font-semibold">$100</button>
+                    </div>
+                    <button @click="rechargeWallet()" class="w-full bg-rose-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition mt-4">Confirm Recharge</button>
+                </div>
+            </div>
+        </template>
+
+        <template x-if="currentView === 'orders'">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Order History & Deliveries</h2>
+                <template x-if="orders.length === 0">
+                    <div class="bg-white rounded-xl border border-slate-200 p-12 text-center text-slate-400 text-sm">
+                        No orders placed yet. Visit the Product Center to purchase Apple numbers.
+                    </div>
+                </template>
+                <template x-if="orders.length > 0">
+                    <div class="space-y-4">
+                        <template x-for="order in orders" :key="order.id">
+                            <div class="bg-white rounded-xl border border-slate-200 p-6 flex flex-col md:flex-row justify-between items-start md:items-center shadow-xs">
+                                <div>
+                                    <div class="text-xs font-mono text-slate-400 mb-1" x-text="order.id"></div>
+                                    <h4 class="font-bold text-slate-900 text-base" x-text="order.title"></h4>
+                                    <p class="text-xs text-slate-500 mt-1">Status: <span class="text-emerald-600 font-bold">Delivered</span> | Date: <span x-text="order.date"></span></p>
+                                </div>
+                                <div class="mt-4 md:mt-0 flex items-center space-x-4">
+                                    <span class="font-bold text-slate-900 text-lg" x-text="`$${order.price.toFixed(2)}`"></span>
+                                    <button @click="showAlertMessage('Delivery data copied to clipboard!')" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800">Copy Numbers</button>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template x-if="currentView === 'messages'">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">SMS Inbox & Verifications</h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex justify-between items-center">
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">+44 20 7946 0958 (London, UK)</div>
+                            <div class="text-sm font-bold text-slate-900 mt-1">Your Apple ID verification code is: <span class="text-rose-600">839-201</span></div>
+                        </div>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Verified</span>
+                    </div>
+                    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex justify-between items-center">
+                        <div>
+                            <div class="text-xs text-slate-400 font-mono">+1 416 555 0198 (Toronto, CA)</div>
+                            <div class="text-sm font-bold text-slate-900 mt-1">Use this code to complete your Apple device sign-in: <span class="text-rose-600">492-110</span></div>
+                        </div>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Verified</span>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </main>
+
+    <div x-show="showAuthModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center z-50 p-4">
+        <div @click.outside="showAuthModal = false" class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl relative">
+            <button @click="showAuthModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg">&times;</button>
+            
+            <h3 class="text-2xl font-black text-slate-900 mb-2" x-text="authModal === 'login' ? 'Welcome Back' : 'Create Account'"></h3>
+            <p class="text-xs text-slate-500 mb-6">Access your workspace, orders, and Apple private numbers.</p>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+                    <input type="email" x-model="authEmail" placeholder="name@example.com" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+                    <input type="password" x-model="authPass" placeholder="••••••••" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-rose-600">
+                </div>
+                <button @click="handleAuth()" class="w-full bg-rose-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition" x-text="authModal === 'login' ? 'Log in' : 'Register Now'"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-white border-t border-slate-200 mt-20 py-8 text-center text-xs text-slate-400">
+        &copy; 2026 wawuji.com - Apple Private Numbers & Digital Services Workspace. All rights reserved.
+    </footer>
+
+    <script>
+        function wawujiApp() {
+            return {
+                currentView: 'home',
+                isLoggedIn: false,
+                balance: 100.00,
+                rechargeAmount: 20,
+                showAuthModal: false,
+                authModal: 'login',
+                authEmail: '',
+                authPass: '',
+                showAlert: false,
+                alertMessage: '',
+                orders: [],
+
+                handleAuth() {
+                    if(!this.authEmail) {
+                        alert('Please enter your email');
+                        return;
+                    }
+                    this.isLoggedIn = true;
+                    this.showAuthModal = false;
+                    this.showAlertMessage(this.authModal === 'login' ? 'Logged in successfully!' : 'Account created successfully!');
+                },
+
+                logout() {
+                    this.isLoggedIn = false;
+                    this.currentView = 'home';
+                    this.showAlertMessage('Logged out successfully');
+                },
+
+                rechargeWallet() {
+                    if(this.rechargeAmount <= 0) return;
+                    this.balance += Number(this.rechargeAmount);
+                    this.showAlertMessage(`Successfully added $${this.rechargeAmount} to balance!`);
+                    this.currentView = 'console';
+                },
+
+                buyPackage(qty, price, title) {
+                    if(!this.isLoggedIn) {
+                        this.showAuthModal = true;
+                        this.authModal = 'login';
+                        return;
+                    }
+                    if(this.balance < price) {
+                        alert('Insufficient balance! Please recharge your account first.');
+                        this.currentView = 'finance';
+                        return;
+                    }
+                    this.balance -= price;
+                    this.orders.unshift({
+                        id: 'MOG-ORD-' + Math.floor(100000 + Math.random() * 900000),
+                        title: title,
+                        price: price,
+                        date: new Date().toLocaleDateString()
+                    });
+                    this.showAlertMessage(`Successfully purchased ${title}! Delivery data ready.`);
+                    this.currentView = 'orders';
+                },
+
+                showAlertMessage(msg) {
+                    this.alertMessage = msg;
+                    this.showAlert = true;
+                    setTimeout(() => { this.showAlert = false; }, 3500);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
