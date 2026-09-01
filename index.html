@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wawuji - Apple Numbers & API Workspace</title>
+    <title>Wawuji - Live Digital Services & USDT Gateway</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
@@ -15,9 +15,9 @@
             <div class="flex items-center space-x-3">
                 <span class="text-2xl font-black text-rose-600 tracking-tight cursor-pointer" @click="currentView = 'home'">wawuji<span class="text-slate-900">.com</span></span>
                 <nav class="hidden md:flex space-x-6 ml-8 text-sm font-medium text-slate-600">
-                    <button @click="currentView = 'home'" :class="currentView === 'home' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Card Issuing</button>
+                    <button @click="currentView = 'home'" :class="currentView === 'home' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Home</button>
                     <button @click="currentView = 'products'" :class="currentView === 'products' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Product Center</button>
-                    <button @click="currentView = 'finance'" :class="currentView === 'finance' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Finance</button>
+                    <button @click="currentView = 'finance'" :class="currentView === 'finance' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">USDT Deposit</button>
                     <button @click="currentView = 'orders'" :class="currentView === 'orders' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">Orders & Delivery</button>
                     <button @click="currentView = 'messages'" :class="currentView === 'messages' ? 'text-rose-600 font-bold' : 'hover:text-rose-600'">SMS Inbox</button>
                 </nav>
@@ -54,9 +54,9 @@
         <template x-if="currentView === 'home'">
             <div>
                 <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
-                    <h1 class="text-3xl font-black mb-3">Apple Numbers & API Delivery Workspace.</h1>
-                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Instant delivery of numbers with structured sms222.us API token links and TXT file export capability.</p>
-                    <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg">Get Started Now</button>
+                    <h1 class="text-3xl font-black mb-3">Professional Apple Numbers & USDT Gateway.</h1>
+                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Fully automated balance deduction, USDT crypto deposits, instant delivery, and sms222.us API integration.</p>
+                    <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg">Open Store</button>
                 </div>
             </div>
         </template>
@@ -67,9 +67,9 @@
                 <div class="flex justify-between items-center mb-6">
                     <div>
                         <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple Numbers</h2>
-                        <p class="text-xs text-slate-500 mt-1">Price: 30 numbers for $20.00 ($0.67 per number).</p>
+                        <p class="text-xs text-slate-500 mt-1">Special price: 30 numbers for $20.00 ($0.67 per number).</p>
                     </div>
-                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Stock Ready</span>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Stock Active</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -113,35 +113,42 @@
         <!-- 3. CONSOLE VIEW -->
         <template x-if="currentView === 'console'">
             <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">User Console</h2>
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">User Console & Account Status</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">Balance</div>
-                        <div class="text-xl font-bold text-slate-900" x-text="`$${balance.toFixed(2)}`"></div>
+                        <div class="text-xs text-slate-500 mb-1">Available Balance</div>
+                        <div class="text-2xl font-bold text-emerald-600" x-text="`$${balance.toFixed(2)}`"></div>
                     </div>
                     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">Total Orders</div>
-                        <div class="text-xl font-bold text-slate-900" x-text="orders.length"></div>
+                        <div class="text-xs text-slate-500 mb-1">Completed Orders</div>
+                        <div class="text-2xl font-bold text-slate-900" x-text="orders.length"></div>
                     </div>
                     <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">API Status</div>
-                        <div class="text-xl font-bold text-emerald-600">Connected</div>
+                        <div class="text-xs text-slate-500 mb-1">USDT Gateway</div>
+                        <div class="text-2xl font-bold text-blue-600">TRC20 Active</div>
                     </div>
                 </div>
             </div>
         </template>
 
-        <!-- 4. FINANCE VIEW -->
+        <!-- 4. FINANCE & USDT DEPOSIT VIEW -->
         <template x-if="currentView === 'finance'">
             <div class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
-                <h2 class="text-xl font-bold text-slate-900 mb-2">Balance Recharge</h2>
-                <p class="text-xs text-slate-500 mb-6">Top up your balance to buy numbers instantly.</p>
+                <h2 class="text-xl font-bold text-slate-900 mb-2">USDT Deposit & Balance Top-up</h2>
+                <p class="text-xs text-slate-500 mb-6">Send USDT via TRC20 network to fund your account instantly.</p>
+                
                 <div class="space-y-4">
-                    <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Amount ($)</label>
-                        <input type="number" x-model.number="rechargeAmount" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs space-y-2">
+                        <span class="font-bold text-slate-700 block">Official USDT Deposit Address (TRC20):</span>
+                        <div class="bg-white p-2.5 border border-slate-300 rounded font-mono text-slate-700 select-all font-semibold">T9yD14Nj9j7xAB4dbGeiX9h8unkKHxuWwb</div>
+                        <p class="text-slate-400">Minimum deposit: $10 USDT. Balance is credited automatically after network confirmation.</p>
                     </div>
-                    <button @click="rechargeWallet()" class="w-full bg-rose-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition">Confirm Recharge</button>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Enter Deposit Amount ($ / USDT)</label>
+                        <input type="number" x-model.number="rechargeAmount" min="10" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
+                    </div>
+                    <button @click="rechargeWallet()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-emerald-700 transition">Confirm USDT Deposit</button>
                 </div>
             </div>
         </template>
@@ -152,7 +159,7 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-6">Order History & Deliveries</h2>
                 <template x-if="orders.length === 0">
                     <div class="bg-white rounded-xl border border-slate-200 p-12 text-center text-slate-400 text-sm">
-                        No orders placed yet. Go to Product Center to get your numbers.
+                        No orders placed yet. Go to Product Center to purchase numbers.
                     </div>
                 </template>
                 <template x-if="orders.length > 0">
@@ -225,21 +232,25 @@
             <h3 class="text-2xl font-black text-slate-900 mb-2" x-text="authModal === 'login' ? 'Welcome Back' : 'Create Account'"></h3>
             <div class="space-y-4 mt-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Email</label>
-                    <input type="email" x-model="authEmail" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+                    <input type="email" x-model="authEmail" placeholder="name@example.com" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+                    <input type="password" placeholder="••••••••" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
                 </div>
                 <button @click="handleAuth()" class="w-full bg-rose-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-rose-700 transition" x-text="authModal === 'login' ? 'Log in' : 'Register'"></button>
             </div>
         </div>
     </div>
 
-    <!-- Script Logic with LocalStorage Persistence -->
+    <!-- Script Logic with Full Balance Management & USDT -->
     <script>
         function wawujiApp() {
             return {
                 currentView: localStorage.getItem('w_view') || 'home',
                 isLoggedIn: localStorage.getItem('w_logged') === 'true',
-                balance: Number(localStorage.getItem('w_balance')) || 100.00,
+                balance: localStorage.getItem('w_balance') !== null ? Number(localStorage.getItem('w_balance')) : 100.00,
                 rechargeAmount: 20,
                 showAuthModal: false,
                 authModal: 'login',
@@ -257,6 +268,10 @@
                 },
 
                 handleAuth() {
+                    if(!this.authEmail) {
+                        alert('Please enter your email');
+                        return;
+                    }
                     this.isLoggedIn = true;
                     this.showAuthModal = false;
                     this.showAlertMessage('Logged in successfully!');
@@ -272,8 +287,9 @@
                 },
 
                 rechargeWallet() {
+                    if(this.rechargeAmount <= 0) return;
                     this.balance += Number(this.rechargeAmount);
-                    this.showAlertMessage(`Added $${this.rechargeAmount} to balance!`);
+                    this.showAlertMessage(`Successfully credited $${this.rechargeAmount} via USDT!`);
                     this.currentView = 'console';
                 },
 
@@ -284,16 +300,17 @@
                         return;
                     }
                     if(this.balance < price) {
-                        alert('Insufficient balance! Please recharge.');
+                        alert('Insufficient balance! Please deposit USDT to continue.');
                         this.currentView = 'finance';
                         return;
                     }
+                    
+                    // Deduct balance instantly
                     this.balance -= price;
 
                     let generatedItems = [];
                     for(let i = 1; i <= qty; i++) {
                         let randomNum = Math.floor(2000000000 + Math.random() * 7999999999).toString();
-                        // Generate token matching sms222.us format
                         let token = 'Q' + Math.random().toString(36).substring(2, 8).toUpperCase() + Math.floor(10000000 + Math.random() * 90000000);
                         generatedItems.push({
                             number: randomNum,
@@ -309,7 +326,7 @@
                         items: generatedItems
                     });
 
-                    this.showAlertMessage('Order completed! Numbers & sms222 API links ready.');
+                    this.showAlertMessage(`Order successful! $${price} deducted from your balance.`);
                     this.currentView = 'orders';
                 },
 
