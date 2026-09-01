@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wawuji - Apple Numbers & API Delivery Workspace</title>
+    <title>Wawuji - Apple Numbers & API Workspace</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://unpkg.com/alpinejs" defer></script>
 </head>
@@ -54,8 +54,8 @@
         <template x-if="currentView === 'home'">
             <div>
                 <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
-                    <h1 class="text-3xl font-black mb-3">US Numbers & API Delivery in one workspace.</h1>
-                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Instant delivery of American numbers with active API endpoints and TXT file export capability for Apple services.</p>
+                    <h1 class="text-3xl font-black mb-3">Apple Numbers & API Delivery Workspace.</h1>
+                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Instant delivery of numbers with structured sms222.us API token links and TXT file export capability.</p>
                     <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg">Get Started Now</button>
                 </div>
             </div>
@@ -66,8 +66,8 @@
             <div>
                 <div class="flex justify-between items-center mb-6">
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple US Numbers</h2>
-                        <p class="text-xs text-slate-500 mt-1">Special price: 30 US numbers for $20.00 with complete API links.</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple Numbers</h2>
+                        <p class="text-xs text-slate-500 mt-1">Price: 30 numbers for $20.00 ($0.67 per number).</p>
                     </div>
                     <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Stock Ready</span>
                 </div>
@@ -77,34 +77,34 @@
                     <div class="bg-white border-2 border-rose-600 rounded-2xl p-6 shadow-md relative flex flex-col justify-between">
                         <span class="absolute -top-3 right-4 bg-rose-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Most Popular</span>
                         <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">US Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">30 US Numbers + API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Includes 30 American numbers, individual API webhook URLs, and instant TXT download.</p>
+                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">30 Numbers + sms222 API</h3>
+                            <p class="text-xs text-slate-500 mb-4">Includes 30 numbers, structured sms222 tokens, and TXT download.</p>
                             <div class="text-3xl font-black text-slate-900 mb-4">$20.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                         </div>
-                        <button @click="buyPackage(30, 20.00, 'Apple US Numbers (30 Qty)')" class="w-full bg-rose-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-rose-700 transition shadow-lg">Buy 30 Numbers ($20)</button>
+                        <button @click="buyPackage(30, 20.00, 'Apple Numbers (30 Qty)')" class="w-full bg-rose-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-rose-700 transition shadow-lg">Buy 30 Numbers ($20)</button>
                     </div>
 
                     <!-- Package 60 Qty ($40) -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">US Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">60 US Numbers + API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Double bundle with high-speed API endpoints and automated delivery.</p>
+                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">60 Numbers + sms222 API</h3>
+                            <p class="text-xs text-slate-500 mb-4">Double bundle with structured sms222 token links and automated delivery.</p>
                             <div class="text-3xl font-black text-slate-900 mb-4">$40.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                         </div>
-                        <button @click="buyPackage(60, 40.00, 'Apple US Numbers (60 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 60 Numbers ($40)</button>
+                        <button @click="buyPackage(60, 40.00, 'Apple Numbers (60 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 60 Numbers ($40)</button>
                     </div>
 
                     <!-- Package 90 Qty ($60) -->
                     <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
                         <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">US Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">90 US Numbers + API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Bulk commercial pack with full API management & 90-day renewals.</p>
+                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">90 Numbers + sms222 API</h3>
+                            <p class="text-xs text-slate-500 mb-4">Bulk commercial pack with full sms222 token management & renewals.</p>
                             <div class="text-3xl font-black text-slate-900 mb-4">$60.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                         </div>
-                        <button @click="buyPackage(90, 60.00, 'Apple US Numbers (90 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 90 Numbers ($60)</button>
+                        <button @click="buyPackage(90, 60.00, 'Apple Numbers (90 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 90 Numbers ($60)</button>
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@
         <template x-if="currentView === 'finance'">
             <div class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                 <h2 class="text-xl font-bold text-slate-900 mb-2">Balance Recharge</h2>
-                <p class="text-xs text-slate-500 mb-6">Top up your balance to buy US numbers instantly.</p>
+                <p class="text-xs text-slate-500 mb-6">Top up your balance to buy numbers instantly.</p>
                 <div class="space-y-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Amount ($)</label>
@@ -152,7 +152,7 @@
                 <h2 class="text-2xl font-bold text-slate-900 mb-6">Order History & Deliveries</h2>
                 <template x-if="orders.length === 0">
                     <div class="bg-white rounded-xl border border-slate-200 p-12 text-center text-slate-400 text-sm">
-                        No orders placed yet. Go to Product Center to get your US numbers.
+                        No orders placed yet. Go to Product Center to get your numbers.
                     </div>
                 </template>
                 <template x-if="orders.length > 0">
@@ -167,27 +167,31 @@
                                     </div>
                                     <div class="mt-4 md:mt-0 flex items-center space-x-3">
                                         <span class="font-bold text-slate-900 text-lg" x-text="`$${order.price.toFixed(2)}`"></span>
-                                        <button @click="downloadTxt(order)" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition flex items-center space-x-1">
-                                            <span>Download TXT</span>
-                                        </button>
-                                        <button @click="copyOrderData(order)" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800">Copy Numbers</button>
+                                        <button @click="downloadTxt(order)" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition">Download TXT</button>
+                                        <button @click="copyOrderData(order)" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800">Copy All</button>
                                     </div>
                                 </div>
 
-                                <!-- US Numbers & API List Preview -->
-                                <div class="bg-slate-50 rounded-lg p-4 border border-slate-200">
-                                    <h5 class="text-xs font-bold text-slate-700 mb-2 uppercase tracking-wide">Generated US Numbers & API Endpoints:</h5>
-                                    <div class="space-y-2 max-h-48 overflow-y-auto pr-2">
-                                        <template x-for="item in order.items" :key="item.number">
-                                            <div class="bg-white p-3 rounded border border-slate-200 flex flex-col md:flex-row justify-between items-start md:items-center text-xs">
-                                                <div>
-                                                    <span class="font-mono font-bold text-rose-600 text-sm" x-text="item.number"></span>
-                                                    <span class="text-slate-400 ml-2">(US - California)</span>
-                                                </div>
-                                                <div class="mt-1 md:mt-0 font-mono text-slate-500 bg-slate-100 px-2 py-1 rounded truncate max-w-xs" x-text="item.apiLink"></div>
-                                            </div>
-                                        </template>
-                                    </div>
+                                <!-- Numbers Table Layout -->
+                                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase">
+                                                <th class="py-3 px-4 font-bold">Number</th>
+                                                <th class="py-3 px-4 font-bold">API Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-200">
+                                            <template x-for="item in order.items" :key="item.number">
+                                                <tr class="hover:bg-slate-50/50 transition">
+                                                    <td class="py-3 px-4 font-mono text-sm font-semibold text-slate-800" x-text="item.number"></td>
+                                                    <td class="py-3 px-4">
+                                                        <a :href="item.apiLink" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline text-sm">Code</a>
+                                                    </td>
+                                                </tr>
+                                            </template>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </template>
@@ -203,10 +207,10 @@
                 <div class="space-y-4">
                     <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex justify-between items-center">
                         <div>
-                            <div class="text-xs text-slate-400 font-mono">+1 (209) 555-0148 (US)</div>
+                            <div class="text-xs text-slate-400 font-mono">+1 (209) 555-0148</div>
                             <div class="text-sm font-bold text-slate-900 mt-1">Apple ID Code: <span class="text-rose-600">492-810</span></div>
                         </div>
-                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Active API</span>
+                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Active Code</span>
                     </div>
                 </div>
             </div>
@@ -229,20 +233,28 @@
         </div>
     </div>
 
-    <!-- Script Logic -->
+    <!-- Script Logic with LocalStorage Persistence -->
     <script>
         function wawujiApp() {
             return {
-                currentView: 'home',
-                isLoggedIn: false,
-                balance: 100.00,
+                currentView: localStorage.getItem('w_view') || 'home',
+                isLoggedIn: localStorage.getItem('w_logged') === 'true',
+                balance: Number(localStorage.getItem('w_balance')) || 100.00,
                 rechargeAmount: 20,
                 showAuthModal: false,
                 authModal: 'login',
-                authEmail: '',
+                authEmail: localStorage.getItem('w_email') || '',
                 showAlert: false,
                 alertMessage: '',
-                orders: [],
+                orders: JSON.parse(localStorage.getItem('w_orders')) || [],
+
+                init() {
+                    this.$watch('currentView', val => localStorage.setItem('w_view', val));
+                    this.$watch('isLoggedIn', val => localStorage.setItem('w_logged', val));
+                    this.$watch('balance', val => localStorage.setItem('w_balance', val));
+                    this.$watch('authEmail', val => localStorage.setItem('w_email', val));
+                    this.$watch('orders', val => localStorage.setItem('w_orders', JSON.stringify(val)));
+                },
 
                 handleAuth() {
                     this.isLoggedIn = true;
@@ -253,6 +265,10 @@
                 logout() {
                     this.isLoggedIn = false;
                     this.currentView = 'home';
+                    localStorage.clear();
+                    this.balance = 100.00;
+                    this.orders = [];
+                    this.showAlertMessage('Logged out successfully');
                 },
 
                 rechargeWallet() {
@@ -276,11 +292,12 @@
 
                     let generatedItems = [];
                     for(let i = 1; i <= qty; i++) {
-                        let randomNum = '+1 (' + Math.floor(200 + Math.random() * 799) + ') ' + Math.floor(100 + Math.random() * 899) + '-' + Math.floor(1000 + Math.random() * 8999);
-                        let token = Math.random().toString(36).substring(2, 12);
+                        let randomNum = Math.floor(2000000000 + Math.random() * 7999999999).toString();
+                        // Generate token matching sms222.us format
+                        let token = 'Q' + Math.random().toString(36).substring(2, 8).toUpperCase() + Math.floor(10000000 + Math.random() * 90000000);
                         generatedItems.push({
                             number: randomNum,
-                            apiLink: `https://api.wawuji.com/v1/sms?num=${encodeURIComponent(randomNum)}&token=${token}`
+                            apiLink: `https://sms222.us/?token=${token}`
                         });
                     }
 
@@ -292,27 +309,27 @@
                         items: generatedItems
                     });
 
-                    this.showAlertMessage('Order completed! US numbers & API links generated.');
+                    this.showAlertMessage('Order completed! Numbers & sms222 API links ready.');
                     this.currentView = 'orders';
                 },
 
                 copyOrderData(order) {
-                    let textToCopy = order.items.map(i => `${i.number} | API: ${i.apiLink}`).join('\n');
+                    let textToCopy = order.items.map(i => `${i.number} | Code: ${i.apiLink}`).join('\n');
                     navigator.clipboard.writeText(textToCopy);
-                    this.showAlertMessage('All numbers and API links copied to clipboard!');
+                    this.showAlertMessage('Numbers and API links copied to clipboard!');
                 },
 
                 downloadTxt(order) {
-                    let content = `=== WAWUJI.COM - ORDER DELIVERY ===\nOrder ID: ${order.id}\nPackage: ${order.title}\nDate: ${order.date}\nTotal Price: $${order.price}\n\n--- US NUMBERS & API ENDPOINTS ---\n\n`;
+                    let content = `=== WAWUJI.COM - ORDER DELIVERY ===\nOrder ID: ${order.id}\nPackage: ${order.title}\nDate: ${order.date}\nTotal Price: $${order.price}\n\n--- NUMBERS & SMS222 API ENDPOINTS ---\n\n`;
                     order.items.forEach((item, index) => {
-                        content += `${index + 1}. Number: ${item.number}\n   API Endpoint: ${item.apiLink}\n\n`;
+                        content += `${index + 1}. Number: ${item.number}\n   Code API: ${item.apiLink}\n\n`;
                     });
 
                     let blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
                     let url = URL.createObjectURL(blob);
                     let a = document.createElement('a');
                     a.href = url;
-                    a.download = `${order.id}-us-numbers.txt`;
+                    a.download = `${order.id}-numbers.txt`;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
