@@ -51,88 +51,82 @@
         </div>
 
         <!-- 1. HOME VIEW -->
-        <template x-if="currentView === 'home'">
-            <div>
-                <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
-                    <h1 class="text-3xl font-black mb-3">Professional Apple Numbers & USDT Gateway.</h1>
-                    <p class="text-slate-300 text-sm max-w-2xl mb-6">Fully automated balance deduction, USDT crypto deposits, instant delivery, and sms222.us API integration.</p>
-                    <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg">Open Store</button>
-                </div>
+        <div x-show="currentView === 'home'">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-8 mb-8 shadow-xl">
+                <h1 class="text-3xl font-black mb-3">Professional Apple Numbers & USDT Gateway.</h1>
+                <p class="text-slate-300 text-sm max-w-2xl mb-6">Fully automated balance deduction, USDT crypto deposits, instant delivery, and sms222.us API integration.</p>
+                <button @click="if(isLoggedIn) { currentView = 'products'; } else { showAuthModal = true; authModal = 'register'; }" class="bg-rose-600 text-white px-6 py-3 rounded-xl text-sm font-bold hover:bg-rose-700 transition shadow-lg">Open Store</button>
             </div>
-        </template>
+        </div>
 
         <!-- 2. PRODUCT CATALOG VIEW -->
-        <template x-if="currentView === 'products'">
-            <div>
-                <div class="flex justify-between items-center mb-6">
+        <div x-show="currentView === 'products'">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple Numbers</h2>
+                    <p class="text-xs text-slate-500 mt-1">Special price: 30 numbers for $20.00 ($0.67 per number).</p>
+                </div>
+                <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Stock Active</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Package 30 Qty ($20) -->
+                <div class="bg-white border-2 border-rose-600 rounded-2xl p-6 shadow-md relative flex flex-col justify-between">
+                    <span class="absolute -top-3 right-4 bg-rose-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Most Popular</span>
                     <div>
-                        <h2 class="text-2xl font-bold text-slate-900">Product Catalog / Apple Numbers</h2>
-                        <p class="text-xs text-slate-500 mt-1">Special price: 30 numbers for $20.00 ($0.67 per number).</p>
+                        <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">30 Numbers + sms222 API</h3>
+                        <p class="text-xs text-slate-500 mb-4">Includes 30 numbers, structured sms222 tokens, and TXT download.</p>
+                        <div class="text-3xl font-black text-slate-900 mb-4">$20.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                     </div>
-                    <span class="text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-semibold">Stock Active</span>
+                    <button @click="buyPackage(30, 20.00, 'Apple Numbers (30 Qty)')" class="w-full bg-rose-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-rose-700 transition shadow-lg">Buy 30 Numbers ($20)</button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Package 30 Qty ($20) -->
-                    <div class="bg-white border-2 border-rose-600 rounded-2xl p-6 shadow-md relative flex flex-col justify-between">
-                        <span class="absolute -top-3 right-4 bg-rose-600 text-white text-[10px] font-bold px-3 py-0.5 rounded-full uppercase">Most Popular</span>
-                        <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">30 Numbers + sms222 API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Includes 30 numbers, structured sms222 tokens, and TXT download.</p>
-                            <div class="text-3xl font-black text-slate-900 mb-4">$20.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
-                        </div>
-                        <button @click="buyPackage(30, 20.00, 'Apple Numbers (30 Qty)')" class="w-full bg-rose-600 text-white py-3 rounded-xl text-sm font-medium hover:bg-rose-700 transition shadow-lg">Buy 30 Numbers ($20)</button>
+                <!-- Package 60 Qty ($40) -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">60 Numbers + sms222 API</h3>
+                        <p class="text-xs text-slate-500 mb-4">Double bundle with structured sms222 token links and automated delivery.</p>
+                        <div class="text-3xl font-black text-slate-900 mb-4">$40.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                     </div>
+                    <button @click="buyPackage(60, 40.00, 'Apple Numbers (60 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 60 Numbers ($40)</button>
+                </div>
 
-                    <!-- Package 60 Qty ($40) -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                        <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">60 Numbers + sms222 API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Double bundle with structured sms222 token links and automated delivery.</p>
-                            <div class="text-3xl font-black text-slate-900 mb-4">$40.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
-                        </div>
-                        <button @click="buyPackage(60, 40.00, 'Apple Numbers (60 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 60 Numbers ($40)</button>
+                <!-- Package 90 Qty ($60) -->
+                <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                    <div>
+                        <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">90 Numbers + sms222 API</h3>
+                        <p class="text-xs text-slate-500 mb-4">Bulk commercial pack with full sms222 token management & renewals.</p>
+                        <div class="text-3xl font-black text-slate-900 mb-4">$60.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
                     </div>
-
-                    <!-- Package 90 Qty ($60) -->
-                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-                        <div>
-                            <div class="text-rose-600 font-bold text-xs uppercase mb-1">Apple Service</div>
-                            <h3 class="text-lg font-bold text-slate-900 mb-2">90 Numbers + sms222 API</h3>
-                            <p class="text-xs text-slate-500 mb-4">Bulk commercial pack with full sms222 token management & renewals.</p>
-                            <div class="text-3xl font-black text-slate-900 mb-4">$60.00 <span class="text-xs font-normal text-slate-400">($0.67 / number)</span></div>
-                        </div>
-                        <button @click="buyPackage(90, 60.00, 'Apple Numbers (90 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 90 Numbers ($60)</button>
-                    </div>
+                    <button @click="buyPackage(90, 60.00, 'Apple Numbers (90 Qty)')" class="w-full bg-slate-900 text-white py-3 rounded-xl text-sm font-medium hover:bg-slate-800 transition">Buy 90 Numbers ($60)</button>
                 </div>
             </div>
-        </template>
+        </div>
 
         <!-- 3. CONSOLE VIEW -->
-        <template x-if="currentView === 'console'">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">User Console & Account Status</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">Available Balance</div>
-                        <div class="text-2xl font-bold text-emerald-600" x-text="`$${balance.toFixed(2)}`"></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">Completed Orders</div>
-                        <div class="text-2xl font-bold text-slate-900" x-text="orders.length"></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
-                        <div class="text-xs text-slate-500 mb-1">USDT Gateway</div>
-                        <div class="text-2xl font-bold text-blue-600">TRC20 Active</div>
-                    </div>
+        <div x-show="currentView === 'console'">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">User Console & Account Status</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                    <div class="text-xs text-slate-500 mb-1">Available Balance</div>
+                    <div class="text-2xl font-bold text-emerald-600" x-text="`$${balance.toFixed(2)}`"></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                    <div class="text-xs text-slate-500 mb-1">Completed Orders</div>
+                    <div class="text-2xl font-bold text-slate-900" x-text="orders.length"></div>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-xs">
+                    <div class="text-xs text-slate-500 mb-1">USDT Gateway</div>
+                    <div class="text-2xl font-bold text-blue-600">TRC20 Active</div>
                 </div>
             </div>
-        </template>
+        </div>
 
         <!-- 4. FINANCE & USDT DEPOSIT VIEW -->
-        <template x-if="currentView === 'finance'">
+        <div x-show="currentView === 'finance'">
             <div class="max-w-xl mx-auto bg-white rounded-2xl border border-slate-200 p-8 shadow-sm">
                 <h2 class="text-xl font-bold text-slate-900 mb-2">USDT Deposit & Balance Top-up</h2>
                 <p class="text-xs text-slate-500 mb-6">Send USDT via TRC20 network to fund your account instantly.</p>
@@ -151,77 +145,73 @@
                     <button @click="rechargeWallet()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold text-sm hover:bg-emerald-700 transition">Confirm USDT Deposit</button>
                 </div>
             </div>
-        </template>
+        </div>
 
         <!-- 5. ORDERS & DELIVERIES VIEW -->
-        <template x-if="currentView === 'orders'">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">Order History & Deliveries</h2>
-                <template x-if="orders.length === 0">
-                    <div class="bg-white rounded-xl border border-slate-200 p-12 text-center text-slate-400 text-sm">
-                        No orders placed yet. Go to Product Center to purchase numbers.
-                    </div>
-                </template>
-                <template x-if="orders.length > 0">
-                    <div class="space-y-6">
-                        <template x-for="order in orders" :key="order.id">
-                            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                                <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b border-slate-100 mb-4">
-                                    <div>
-                                        <div class="text-xs font-mono text-slate-400" x-text="order.id"></div>
-                                        <h4 class="font-bold text-slate-900 text-lg" x-text="order.title"></h4>
-                                        <p class="text-xs text-slate-500 mt-0.5">Status: <span class="text-emerald-600 font-bold">Delivered</span> | Date: <span x-text="order.date"></span></p>
-                                    </div>
-                                    <div class="mt-4 md:mt-0 flex items-center space-x-3">
-                                        <span class="font-bold text-slate-900 text-lg" x-text="`$${order.price.toFixed(2)}`"></span>
-                                        <button @click="downloadTxt(order)" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition">Download TXT</button>
-                                        <button @click="copyOrderData(order)" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800">Copy All</button>
-                                    </div>
-                                </div>
+        <div x-show="currentView === 'orders'">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">Order History & Deliveries</h2>
+            
+            <template x-if="orders.length === 0">
+                <div class="bg-white rounded-xl border border-slate-200 p-12 text-center text-slate-400 text-sm">
+                    No orders placed yet. Go to Product Center to purchase numbers.
+                </div>
+            </template>
 
-                                <!-- Numbers Table Layout -->
-                                <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
-                                    <table class="w-full text-left border-collapse">
-                                        <thead>
-                                            <tr class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase">
-                                                <th class="py-3 px-4 font-bold">Number</th>
-                                                <th class="py-3 px-4 font-bold">API Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="divide-y divide-slate-200">
-                                            <template x-for="item in order.items" :key="item.number">
-                                                <tr class="hover:bg-slate-50/50 transition">
-                                                    <td class="py-3 px-4 font-mono text-sm font-semibold text-slate-800" x-text="item.number"></td>
-                                                    <td class="py-3 px-4">
-                                                        <a :href="item.apiLink" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline text-sm">Code</a>
-                                                    </td>
-                                                </tr>
-                                            </template>
-                                        </tbody>
-                                    </table>
-                                </div>
+            <div class="space-y-6">
+                <template x-for="order in orders" :key="order.id">
+                    <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+                        <div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-4 border-b border-slate-100 mb-4">
+                            <div>
+                                <div class="text-xs font-mono text-slate-400" x-text="order.id"></div>
+                                <h4 class="font-bold text-slate-900 text-lg" x-text="order.title"></h4>
+                                <p class="text-xs text-slate-500 mt-0.5">Status: <span class="text-emerald-600 font-bold">Delivered</span> | Date: <span x-text="order.date"></span></p>
                             </div>
-                        </template>
+                            <div class="mt-4 md:mt-0 flex items-center space-x-3">
+                                <span class="font-bold text-slate-900 text-lg" x-text="`$${order.price.toFixed(2)}`"></span>
+                                <button @click="downloadTxt(order)" class="bg-emerald-600 text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-emerald-700 transition">Download TXT</button>
+                                <button @click="copyOrderData(order)" class="bg-slate-900 text-white px-4 py-2 rounded-lg text-xs font-medium hover:bg-slate-800">Copy All</button>
+                            </div>
+                        </div>
+
+                        <!-- Numbers Table Layout -->
+                        <div class="bg-white rounded-lg border border-slate-200 overflow-hidden">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr class="bg-slate-50 border-b border-slate-200 text-xs text-slate-500 uppercase">
+                                        <th class="py-3 px-4 font-bold">Number</th>
+                                        <th class="py-3 px-4 font-bold">API Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200">
+                                    <template x-for="item in order.items" :key="item.number">
+                                        <tr class="hover:bg-slate-50/50 transition">
+                                            <td class="py-3 px-4 font-mono text-sm font-semibold text-slate-800" x-text="item.number"></td>
+                                            <td class="py-3 px-4">
+                                                <a :href="item.apiLink" target="_blank" class="text-blue-600 hover:text-blue-800 font-medium underline text-sm">Code</a>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </template>
             </div>
-        </template>
+        </div>
 
         <!-- 6. SMS INBOX VIEW -->
-        <template x-if="currentView === 'messages'">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 mb-6">SMS Inbox & Webhook Logs</h2>
-                <div class="space-y-4">
-                    <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex justify-between items-center">
-                        <div>
-                            <div class="text-xs text-slate-400 font-mono">+1 (209) 555-0148</div>
-                            <div class="text-sm font-bold text-slate-900 mt-1">Apple ID Code: <span class="text-rose-600">492-810</span></div>
-                        </div>
-                        <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Active Code</span>
+        <div x-show="currentView === 'messages'">
+            <h2 class="text-2xl font-bold text-slate-900 mb-6">SMS Inbox & Webhook Logs</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-xl border border-slate-200 p-5 shadow-xs flex justify-between items-center">
+                    <div>
+                        <div class="text-xs text-slate-400 font-mono">+1 (209) 555-0148</div>
+                        <div class="text-sm font-bold text-slate-900 mt-1">Apple ID Code: <span class="text-rose-600">492-810</span></div>
                     </div>
+                    <span class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-full font-semibold">Active Code</span>
                 </div>
             </div>
-        </template>
+        </div>
 
     </main>
 
@@ -246,7 +236,7 @@
         </div>
     </div>
 
-    <!-- Script Logic with Full Credential & Cookie Persistence -->
+    <!-- Script Logic with Full Credential & Order Persistence -->
     <script>
         function wawujiApp() {
             return {
